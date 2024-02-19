@@ -1,0 +1,21 @@
+{{- $name := .Get "_name" }}
+{{- $type := .Get "_type" }}
+{{- $output := .Get "_output" }}
+{{- $source := "" }}
+{{- with .Page.Resources.Get $name }}
+  {{- $source = .Content }}
+{{- else }}
+  {{- with resources.Get $name }}
+    {{- $source = .Content }}
+  {{- end }}
+{{- end }}
+{{- with $source }}
+  {{- $svg := partial "kroki/functions/svg" (dict "type" $type "source" $source) }}
+  {{- with $svg }}
+    {{ partial "kroki/output" (dict
+      "svg" .
+      "output" $output
+      "attrs" $.Params)
+    }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,9 @@
+{{- $attrs := .Attributes }}
+{{- $svg := partial "kroki/functions/svg" (dict "type" $attrs._type "source" .Inner) }}
+{{- with $svg }}
+  {{ partial "kroki/output" (dict
+    "svg" .
+    "output" $attrs._output
+    "attrs" $attrs)
+  }}
+{{- end }}
