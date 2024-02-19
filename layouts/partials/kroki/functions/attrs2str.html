@@ -1,0 +1,5 @@
+{{- $attrs := slice }}
+{{- range $k, $v := .Values }}
+  {{- $attrs = $attrs | append (printf `%s="%s"` $k $v) }}
+{{- end }}
+{{- return delimit $attrs " " }}

@@ -1,0 +1,25 @@
+{{- $ctx := . }}
+{{- if not $ctx.type }}
+  {{- errorf "[kroki] %s" "no diagram type specified" }}
+{{- end }}
+{{- $body := dict 
+  "diagram_source" $ctx.source
+  "diagram_type" ($ctx.type | lower)
+  "output_format" "svg"
+}}
+{{- $opts := dict
+  "method" "post"
+  "body" ($body | jsonify)
+  "headers" (dict
+    "Content-Type" "application/json")
+}}
+{{- $url := site.Params.kroki.endpoint }}
+{{- $resource := resources.GetRemote $url $opts }}
+{{- with resources.GetRemote $url $opts }}
+  {{- with .Err }}
+    {{- errorf "[kroki] unable to generate diagrams: %s." . }}
+  {{- end }}
+{{- else }}
+  {{- errorf "[kroki] unable to generate diagrams." }}
+{{- end }}
+{{- return $resource }}

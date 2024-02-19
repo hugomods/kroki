@@ -1,0 +1,38 @@
+{{- $svg := .svg }}
+{{- $output := default site.Params.kroki.output .output }}
+{{- $attrs := newScratch }}
+{{- range $key, $value := .attrs }}
+  {{- if or
+    (eq $key "type")
+    (eq $key "src")
+    (strings.HasPrefix $key "_")
+  }}
+    {{- continue }}
+  {{- end }}
+  {{- if eq $key "class" }}
+    {{- $value = printf "kroki %s" $value }}
+  {{- end }}
+  {{- $attrs.Set $key (string $value) }}
+{{- end }}
+{{- if eq $output "inline" }}
+  {{- $rawSVG := $svg.Content }}
+  {{- $matches := findRE `<svg[^>]+>` $rawSVG 1 }}
+  {{- with index $matches 0 }}
+    {{- range findRESubmatch `([\w\d\-]+)="([^"]+)"` . }}
+      {{- $key := index . 1 }}
+      {{- with index . 2 }}
+        {{- $attrs.Set $key . }}
+      {{- end }}
+    {{- end }}
+    {{- $newSVG := partial "kroki/functions/attrs2str" $attrs | printf "<svg %s>" }}
+    {{- $rawSVG = replaceRE `<svg[^>]+>` $newSVG $rawSVG 1 }}
+  {{- end }}
+  {{- $rawSVG | safeHTML }}
+{{- else if eq $output "embed" }}
+  <embed
+    {{ with $attrs }}{{ partial "kroki/functions/attrs2str" . | safeHTMLAttr }}{{ end }}
+    type="image/svg+xml"
+    src="{{ $svg.RelPermalink }}" />
+{{- else }}
+  {{- warnf "[kroki] unknown output: %s" $output }}
+{{- end }}
