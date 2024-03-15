@@ -1,6 +1,7 @@
 {{- $svg := .svg }}
 {{- $output := default site.Params.kroki.output .output }}
 {{- $attrs := newScratch }}
+{{- $attrs.Set "class" "kroki" }}
 {{- range $key, $value := .attrs }}
   {{- if or
     (eq $key "type")
