@@ -2,12 +2,15 @@
 {{- if not $ctx.type }}
   {{- errorf "[kroki] %s" "no diagram type specified" }}
 {{- end }}
+{{- $type := $ctx.type | lower }}
 {{- $body := dict 
   "diagram_source" $ctx.source
-  "diagram_type" ($ctx.type | lower)
+  "diagram_type" $type
   "output_format" "svg"
 }}
+{{- $cacheKey := printf "kroki-%s-%s" $type ($ctx.source | md5) }}
 {{- $opts := dict
+  "key" $cacheKey
   "method" "post"
   "body" ($body | jsonify)
   "headers" (dict
