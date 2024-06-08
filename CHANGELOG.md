@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/hugomods/kroki/compare/v0.1.1...v0.1.2) (2024-06-08)
+
+
+### Performance Improvements ⚡️
+
+* use custom cache key that calculated by diagram type and source ([#13](https://github.com/hugomods/kroki/issues/13)) ([c3a29ff](https://github.com/hugomods/kroki/commit/c3a29ff4ac214baf24c1c3c6669d0d8e2c3a8644)), closes [#12](https://github.com/hugomods/kroki/issues/12)
+
 ## [0.1.1](https://github.com/hugomods/kroki/compare/v0.1.0...v0.1.1) (2024-03-15)
 
 
