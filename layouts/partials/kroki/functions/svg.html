@@ -1,6 +1,6 @@
 {{- $ctx := . }}
 {{- if not $ctx.type }}
-  {{- errorf "[kroki] %s" "no diagram type specified" }}
+  {{- errorf "[github.com/hugomods/kroki] %s" "no diagram type specified" }}
 {{- end }}
 {{- $type := $ctx.type | lower }}
 {{- $body := $ctx.source }}
@@ -19,9 +19,9 @@
     {{- with .Data.Body }}
       {{- $err = . }}
     {{- end }}
-    {{- errorf "[kroki] unable to generate diagrams from %q: %s.\n%s" $url $err $body }}
+    {{- errorf "[github.com/hugomods/kroki] unable to generate diagrams from %q: %s.\n%s" $url $err $body }}
   {{- end }}
 {{- else }}
-  {{- errorf "[kroki] unable to generate diagrams from %q.\n%s" $url $body }}
+  {{- errorf "[github.com/hugomods/kroki] unable to generate diagrams from %q.\n%s" $url $body }}
 {{- end }}
 {{- return $resp }}
