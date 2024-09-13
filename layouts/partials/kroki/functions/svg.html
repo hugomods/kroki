@@ -15,7 +15,11 @@
 {{- $resp := resources.GetRemote $url $opts }}
 {{- with $resp }}
   {{- with .Err }}
-    {{- errorf "[kroki] unable to generate diagrams from %q: %s.\n%s" $url . $body }}
+    {{- $err := . }}
+    {{- with .Data.Body }}
+      {{- $err = . }}
+    {{- end }}
+    {{- errorf "[kroki] unable to generate diagrams from %q: %s.\n%s" $url $err $body }}
   {{- end }}
 {{- else }}
   {{- errorf "[kroki] unable to generate diagrams from %q.\n%s" $url $body }}
