@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.4](https://github.com/hugomods/kroki/compare/v0.1.3...v0.1.4) (2024-09-13)
+
+
+### Bug Fixes 🐞
+
+* describe the error meessage in details ([9b28e18](https://github.com/hugomods/kroki/commit/9b28e18174fb3798db419bbaa7b1ea91d491ee61))
+* modify prefix for errors ([62418e1](https://github.com/hugomods/kroki/commit/62418e181233ef57f4789ad336f4a01078d4a993))
+
 ## [0.1.3](https://github.com/hugomods/kroki/compare/v0.1.2...v0.1.3) (2024-09-13)
 
 
