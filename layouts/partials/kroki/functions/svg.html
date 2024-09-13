@@ -3,26 +3,21 @@
   {{- errorf "[kroki] %s" "no diagram type specified" }}
 {{- end }}
 {{- $type := $ctx.type | lower }}
-{{- $body := dict 
-  "diagram_source" $ctx.source
-  "diagram_type" $type
-  "output_format" "svg"
-}}
-{{- $cacheKey := printf "kroki-%s-%s" $type ($ctx.source | md5) }}
+{{- $body := $ctx.source }}
+{{- $cacheKey := printf "kroki-%s-%s" $type ($body | md5) }}
 {{- $opts := dict
   "key" $cacheKey
   "method" "post"
-  "body" ($body | jsonify)
-  "headers" (dict
-    "Content-Type" "application/json")
+  "body" $body
+  "headers" (dict "Content-Type" "text/plain")
 }}
-{{- $url := site.Params.kroki.endpoint }}
-{{- $resource := resources.GetRemote $url $opts }}
-{{- with resources.GetRemote $url $opts }}
+{{- $url := printf "%s/%s/svg" (strings.TrimSuffix "/" site.Params.kroki.endpoint) $type }}
+{{- $resp := resources.GetRemote $url $opts }}
+{{- with $resp }}
   {{- with .Err }}
-    {{- errorf "[kroki] unable to generate diagrams: %s." . }}
+    {{- errorf "[kroki] unable to generate diagrams from %q: %s.\n%s" $url . $body }}
   {{- end }}
 {{- else }}
-  {{- errorf "[kroki] unable to generate diagrams." }}
+  {{- errorf "[kroki] unable to generate diagrams from %q.\n%s" $url $body }}
 {{- end }}
-{{- return $resource }}
+{{- return $resp }}
