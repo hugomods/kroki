@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/hugomods/kroki/compare/v0.1.2...v0.1.3) (2024-09-13)
+
+
+### Bug Fixes 🐞
+
+* use plain text as request body instead of JSON ([#16](https://github.com/hugomods/kroki/issues/16)) ([d60f786](https://github.com/hugomods/kroki/commit/d60f78673d8b4cdffa52497a86a2e4ed58c2f48d))
+
 ## [0.1.2](https://github.com/hugomods/kroki/compare/v0.1.1...v0.1.2) (2024-06-08)
 
 
