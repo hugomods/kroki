@@ -12,7 +12,7 @@
   "headers" (dict "Content-Type" "text/plain")
 }}
 {{- $url := printf "%s/%s/svg" (strings.TrimSuffix "/" site.Params.kroki.endpoint) $type }}
-{{- $resp := resources.GetRemote $url $opts }}
+{{- $resp := try (resources.GetRemote $url $opts) }}
 {{- with $resp }}
   {{- with .Err }}
     {{- $err := . }}
@@ -24,4 +24,4 @@
 {{- else }}
   {{- errorf "[github.com/hugomods/kroki] unable to generate diagrams from %q.\n%s" $url $body }}
 {{- end }}
-{{- return $resp }}
+{{- return $resp.Value }}
