@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/hugomods/kroki/compare/v0.1.4...v0.1.5) (2025-01-17)
+
+
+### Bug Fixes 🐞
+
+* handle resources.GetRemote errors with the try expression ([4ba990d](https://github.com/hugomods/kroki/commit/4ba990d8209cb706afa3c48e63adbbc03c87e891))
+
 ## [0.1.4](https://github.com/hugomods/kroki/compare/v0.1.3...v0.1.4) (2024-09-13)
 
 
