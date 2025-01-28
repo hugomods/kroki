@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/hugomods/kroki/compare/v0.1.5...v0.2.0) (2025-01-28)
+
+
+### Features ✨
+
+* add new output options for img and object ([1216cfe](https://github.com/hugomods/kroki/commit/1216cfed2b69b8a8258a8263fad26de3322ea067))
+
 ## [0.1.5](https://github.com/hugomods/kroki/compare/v0.1.4...v0.1.5) (2025-01-17)
 
 
