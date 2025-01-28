@@ -34,6 +34,15 @@
     {{ with $attrs }}{{ partial "kroki/functions/attrs2str" . | safeHTMLAttr }}{{ end }}
     type="image/svg+xml"
     src="{{ $svg.RelPermalink }}" />
+{{- else if eq $output "img" }}
+  <img
+    {{ with $attrs }}{{ partial "kroki/functions/attrs2str" . | safeHTMLAttr }}{{ end }}
+    src="{{ $svg.RelPermalink }}" />
+{{- else if eq $output "object" }}
+  <object
+    {{ with $attrs }}{{ partial "kroki/functions/attrs2str" . | safeHTMLAttr }}{{ end }}
+    type="image/svg+xml"
+    data="{{ $svg.RelPermalink }}" />
 {{- else }}
   {{- warnf "[kroki] unknown output: %s" $output }}
 {{- end }}
