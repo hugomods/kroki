@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/hugomods/kroki/compare/v0.2.0...v0.2.1) (2025-07-23)
+
+
+### Bug Fixes 🐞
+
+* append `kroki` to raw SVG `class` attribute ([24c3e76](https://github.com/hugomods/kroki/commit/24c3e76d30f2ee7f54feec9243374f44b9b52946))
+
 ## [0.2.0](https://github.com/hugomods/kroki/compare/v0.1.5...v0.2.0) (2025-01-28)
 
 
