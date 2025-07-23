@@ -25,6 +25,7 @@
         {{- $attrs.Set $key . }}
       {{- end }}
     {{- end }}
+    {{- $attrs.Set "class" ($attrs.Get "class" | printf "kroki %s") }}
     {{- $newSVG := partial "kroki/functions/attrs2str" $attrs | printf "<svg %s>" }}
     {{- $rawSVG = replaceRE `<svg[^>]+>` $newSVG $rawSVG 1 }}
   {{- end }}
