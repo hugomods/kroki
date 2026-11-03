@@ -16,10 +16,7 @@
 {{- with $resp }}
   {{- with .Err }}
     {{- $err := . }}
-    {{- with .Data.Body }}
-      {{- $err = . }}
-    {{- end }}
-    {{- errorf "[github.com/hugomods/kroki] unable to generate diagrams from %q: %s.\n%s" $url $err $body }}
+    {{- errorf "[github.com/hugomods/kroki] unable to generate diagrams from %q: %s\n%s" $url $err $body }}
   {{- end }}
 {{- else }}
   {{- errorf "[github.com/hugomods/kroki] unable to generate diagrams from %q.\n%s" $url $body }}
